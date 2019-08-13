@@ -37,6 +37,7 @@
           <span class="svg-container">
             <svg-icon icon-class="password" />
           </span>
+          <!--失去焦点关闭大写键-->
           <el-input
             :key="passwordType"
             ref="password"
@@ -143,6 +144,7 @@ export default {
   watch: {
     $route: {
       handler: function(route) {
+        console.log(route);
         const query = route.query;
         if (query) {
           this.redirect = query.redirect;
@@ -167,7 +169,10 @@ export default {
   },
   methods: {
     checkCapslock({ shiftKey, key } = {}) {
+      console.log(shiftKey); //按住了shift 这个就是true,反正
+      console.log(key); //键入的值 ABCD,.?什么的
       if (key && key.length === 1) {
+        // 这两种情况之下是开起来了大写锁定
         if (
           (shiftKey && (key >= "a" && key <= "z")) ||
           (!shiftKey && (key >= "A" && key <= "Z"))
@@ -177,6 +182,8 @@ export default {
           this.capsTooltip = false;
         }
       }
+
+      //当大写键提示有的时候，又俺写了大写键，则关闭大写键提示
       if (key === "CapsLock" && this.capsTooltip === true) {
         this.capsTooltip = false;
       }
