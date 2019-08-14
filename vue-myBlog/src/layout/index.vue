@@ -1,14 +1,20 @@
 <template>
-  <div :class="classObj" class="app-wrapper"></div>
+  <div :class="classObj" class="app-wrapper">
+    <sidebar class="sidebar-container"></sidebar>
+  </div>
 </template>
 
 <script>
+import Sidebar from "./components/Sidebar";
 export default {
+  name: "Layout",
   data() {
     return {};
   },
 
-  components: {},
+  components: {
+    Sidebar
+  },
 
   computed: {
     classObj() {
