@@ -99,6 +99,7 @@
 </template>
 
 <script>
+import api from "@/api";
 import { validUsername } from "@/utils/validate";
 import SocialSign from "./components/SocialSignin";
 
@@ -202,18 +203,42 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true;
-          this.$store
-            .dispatch("user/login", this.loginForm)
-            .then(() => {
-              this.$router.push({
-                path: this.redirect || "/",
-                query: this.otherQuery
-              });
+          api.login
+            .createLogin({
+              data: this.loginForm
+            })
+            .then(({ data, status }) => {
+              if (data.data.code == "000000") {
+                this.$message({
+                  message: data.data.message,
+                  type: "success",
+                  duration: 3000
+                });
+              } else {
+                this.$message({
+                  message: data.data.message,
+                  type: "error",
+                  duration: 3000
+                });
+              }
               this.loading = false;
             })
-            .catch(() => {
+            .catch(err => {
               this.loading = false;
             });
+          // this.loading = true;
+          // this.$store
+          //   .dispatch("user/login", this.loginForm)
+          //   .then(() => {
+          //     this.$router.push({
+          //       path: this.redirect || "/",
+          //       query: this.otherQuery
+          //     });
+          //     this.loading = false;
+          //   })
+          //   .catch(() => {
+          //     this.loading = false;
+          //   });
         } else {
           console.log("error submit!!");
           return false;

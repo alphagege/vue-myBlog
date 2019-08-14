@@ -53,7 +53,12 @@ module.exports = {
   devServer: {
     host: "localhost",
     port: 8080,
-    proxy: null // 设置代理
+    proxy: {
+      "^/mock": {
+        target: "https://www.easy-mock.com/",
+        changeOrigin: true
+      }
+    }
   },
   // 第三方插件配置
   pluginOptions: {
