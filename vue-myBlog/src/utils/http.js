@@ -31,7 +31,7 @@ axios.interceptors.response.use(
       router.push({ path: "/login" });
     } else {
       Message.error({
-        message: error.response.data.message
+        message: error
       });
     }
     return Promise.reject(error);

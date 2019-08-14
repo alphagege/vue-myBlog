@@ -1,20 +1,24 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-Vue.config.productionTip = false
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+Vue.config.productionTip = false;
 
-import 'normalize.css/normalize.css' // a modern alternative to CSS resets
+import "normalize.css/normalize.css"; // a modern alternative to CSS resets
 
-import Element from 'element-ui'
-import './styles/element-variables.scss'
+import Element from "element-ui";
+import "./styles/element-variables.scss";
 
-import '@/styles/index.scss' // global css
+import "@/styles/index.scss"; // global css
 
-Vue.use(Element)
+Vue.use(Element);
 
-import './icons'
+import "./icons";
+
+import store from "./store/index.js";
+console.log(store);
 
 new Vue({
   router,
-  render: h => h(App),
-}).$mount('#app')
+  store,
+  render: h => h(App)
+}).$mount("#app");

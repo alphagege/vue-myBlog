@@ -100,6 +100,7 @@
 
 <script>
 import api from "@/api";
+import { mapActions } from "vuex";
 import { validUsername } from "@/utils/validate";
 import SocialSign from "./components/SocialSignin";
 
@@ -169,6 +170,7 @@ export default {
     // window.removeEventListener('storage', this.afterQRScan)
   },
   methods: {
+    ...mapActions("user", ["login"]),
     checkCapslock({ shiftKey, key } = {}) {
       console.log(shiftKey); //按住了shift 这个就是true,反正
       console.log(key); //键入的值 ABCD,.?什么的
@@ -203,45 +205,36 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true;
-          api.login
-            .createLogin({
-              data: this.loginForm
-            })
-            .then(({ data, status }) => {
-              if (data.data.code == "000000") {
+          this.login(this.loginForm)
+            .then(res => {
+              if (res.data.data.code == "000000") {
                 this.$message({
-                  message: data.data.message,
                   type: "success",
+                  message: res.data.data.message,
                   duration: 3000
                 });
+                this.$router.push({
+                  name: "dashboard"
+                });
+                this.loading = false;
               } else {
                 this.$message({
-                  message: data.data.message,
                   type: "error",
+                  message: res.data.data.message,
                   duration: 3000
                 });
+                this.loading = false;
               }
-              this.loading = false;
             })
             .catch(err => {
               this.loading = false;
             });
-          // this.loading = true;
-          // this.$store
-          //   .dispatch("user/login", this.loginForm)
-          //   .then(() => {
-          //     this.$router.push({
-          //       path: this.redirect || "/",
-          //       query: this.otherQuery
-          //     });
-          //     this.loading = false;
-          //   })
-          //   .catch(() => {
-          //     this.loading = false;
-          //   });
         } else {
-          console.log("error submit!!");
-          return false;
+          this.$message({
+            type: "error",
+            message: "表单验证失败",
+            duration: 3000
+          });
         }
       });
     },
