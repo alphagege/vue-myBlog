@@ -12,6 +12,8 @@ import "@/styles/index.scss"; // global css
 
 Vue.use(Element);
 
+import "./permission";
+
 import "./icons";
 
 import store from "./store/index.js";

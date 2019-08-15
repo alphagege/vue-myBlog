@@ -215,7 +215,7 @@ export default {
                   duration: 3000
                 });
                 this.$router.push({
-                  name: "dashboard"
+                  name: "Dashboard"
                 });
                 this.loading = false;
               } else {

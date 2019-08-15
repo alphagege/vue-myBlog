@@ -4,10 +4,12 @@ Vue.use(Vuex);
 import getters from "./getters";
 import app from "./modules/app"; // 应用本身的store
 import user from "./modules/user"; // 用户的store
+import settings from "./modules/settings"; // 应用本身主题，是否显示设置，tagsview,是否固定头部，侧边栏的logo
 export default new Vuex.Store({
   getters,
   modules: {
     app,
-    user
+    user,
+    settings
   }
 });

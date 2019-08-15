@@ -4,6 +4,7 @@
     <div class="main-container">
       <div>
         <navbar />
+        <app-main />
       </div>
     </div>
   </div>
@@ -13,6 +14,7 @@
 import { mapState } from "vuex";
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
+import AppMain from "./components/AppMain";
 export default {
   name: "Layout",
   data() {
@@ -21,7 +23,8 @@ export default {
 
   components: {
     Sidebar,
-    Navbar
+    Navbar,
+    AppMain
   },
 
   computed: {
