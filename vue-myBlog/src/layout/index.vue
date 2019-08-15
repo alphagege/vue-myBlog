@@ -1,11 +1,18 @@
 <template>
   <div :class="classObj" class="app-wrapper">
     <sidebar class="sidebar-container"></sidebar>
+    <div class="main-container">
+      <div>
+        <navbar />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 import Sidebar from "./components/Sidebar";
+import Navbar from "./components/Navbar";
 export default {
   name: "Layout",
   data() {
@@ -13,14 +20,19 @@ export default {
   },
 
   components: {
-    Sidebar
+    Sidebar,
+    Navbar
   },
 
   computed: {
+    // 这里用mapGetters引入sider在下面的classObj会报错，这么用就不会报错
+    ...mapState({
+      sidebar: state => state.app.sidebar
+    }),
     classObj() {
       return {
-        // hideSidebar: !this.sidebar.opened, // 隐藏侧边栏所用的样式
-        // openSidebar: this.sidebar.opened, // 打开侧边栏所用的样式
+        hideSidebar: !this.sidebar.opened, // 隐藏侧边栏所用的样式
+        openSidebar: this.sidebar.opened // 打开侧边栏所用的样式
         // withoutAnimation: this.sidebar.withoutAnimation, // 暂时不知
         // mobile: this.device === "mobile" // 设备分辨率标识
       };

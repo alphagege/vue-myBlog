@@ -5,6 +5,10 @@ Vue.use(Router);
 
 const constantRoutes = [
   {
+    path: "/",
+    redirect: "/login"
+  },
+  {
     name: "login",
     path: "/login",
     component: () => import("@/views/login/index.vue")

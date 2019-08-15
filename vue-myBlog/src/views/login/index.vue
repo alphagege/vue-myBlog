@@ -205,7 +205,8 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true;
-          this.login(this.loginForm)
+          this.$store
+            .dispatch("user/login", this.loginForm)
             .then(res => {
               if (res.data.data.code == "000000") {
                 this.$message({
