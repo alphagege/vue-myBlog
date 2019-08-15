@@ -1,6 +1,6 @@
 import variables from "@/styles/element-variables.scss";
-console.log(variables);
 import defaultSettings from "@/settings";
+import * as types from "../mutations-type";
 
 const { showSettings, tagsView, fixedHeader, sidebarLogo } = defaultSettings;
 
@@ -13,7 +13,7 @@ const state = {
 };
 
 const mutations = {
-  CHANGE_SETTING: (state, { key, value }) => {
+  [types.CHANGE_SETTING](state, { key, value }) {
     if (state.hasOwnProperty(key)) {
       state[key] = value;
     }
@@ -22,7 +22,7 @@ const mutations = {
 
 const actions = {
   changeSetting({ commit }, data) {
-    commit("CHANGE_SETTING", data);
+    commit(types.CHANGE_SETTING, data);
   }
 };
 

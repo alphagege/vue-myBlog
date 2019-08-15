@@ -1,4 +1,5 @@
 <template>
+  <!-- 路有对象 hidden配置为false 或者压根没有hidden这个字段才会显示 -->
   <div v-if="!item.hidden" class="menu-wrapper">
     <template
       v-if="

@@ -22,6 +22,7 @@
 export default {
   name: "SidebarLogo",
   props: {
+    // sidebar.opened
     collapse: {
       type: Boolean,
       required: true
