@@ -22,7 +22,11 @@ const mutations = {
       Cookies.set("sidebarStatus", 0);
     }
   },
-  [types.TOGGLE_DEVICE]: (state, device) => {
+  [types.CLOSE_SIDEBAR](state) {
+    state.sidebar.opened = false; // 取反
+    Cookies.set("sidebarStatus", 0);
+  },
+  [types.TOGGLE_DEVICE](state, device) {
     state.device = device;
   }
 };
@@ -33,6 +37,9 @@ const actions = {
   },
   toggleDevice({ commit }, device) {
     commit(types.TOGGLE_DEVICE, device);
+  },
+  closeSidebar({ commit }) {
+    commit(types.CLOSE_SIDEBAR);
   }
 };
 

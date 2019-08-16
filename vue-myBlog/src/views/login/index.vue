@@ -99,7 +99,6 @@
 </template>
 
 <script>
-import api from "@/api";
 import { mapActions } from "vuex";
 import { validUsername } from "@/utils/validate";
 import SocialSign from "./components/SocialSignin";

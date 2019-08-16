@@ -1,5 +1,10 @@
 <template>
   <div :class="classObj" class="app-wrapper">
+    <div
+      v-if="device === 'mobile' && sidebar.opened"
+      class="drawer-bg"
+      @click="handleClickOutside"
+    />
     <sidebar class="sidebar-container"></sidebar>
     <div class="main-container">
       <div>
@@ -12,6 +17,8 @@
 
 <script>
 import { mapState } from "vuex";
+import ResizeMixin from "./mixin/ResizeHandler";
+console.log(ResizeMixin);
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
 import AppMain from "./components/AppMain";
@@ -26,25 +33,30 @@ export default {
     Navbar,
     AppMain
   },
-
+  mixins: [ResizeMixin],
   computed: {
     // 这里用mapGetters引入sider在下面的classObj会报错，这么用就不会报错
     ...mapState({
-      sidebar: state => state.app.sidebar
+      sidebar: state => state.app.sidebar,
+      device: state => state.app.device
     }),
     classObj() {
       return {
         hideSidebar: !this.sidebar.opened, // 隐藏侧边栏所用的样式
-        openSidebar: this.sidebar.opened // 打开侧边栏所用的样式
+        openSidebar: this.sidebar.opened, // 打开侧边栏所用的样式
         // withoutAnimation: this.sidebar.withoutAnimation, // 暂时不知
-        // mobile: this.device === "mobile" // 设备分辨率标识
+        mobile: this.device === "mobile" // 设备分辨率标识
       };
     }
   },
 
   mounted() {},
 
-  methods: {}
+  methods: {
+    handleClickOutside() {
+      this.$store.dispatch("app/closeSidebar");
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
