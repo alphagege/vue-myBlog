@@ -51,7 +51,7 @@ module.exports = {
   },
   // webpack-dev-server 相关配置
   devServer: {
-    host: "localhost",
+    host: "192.168.1.170",
     port: 8080,
     proxy: {
       "^/mock": {
