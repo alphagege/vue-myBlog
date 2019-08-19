@@ -6,7 +6,9 @@ module.exports = {
    * @description Whether show the settings right-panel
    */
   showSettings: true,
-
+  /**
+   * @types {boolean} true | false
+   */
   /**
    * @type {boolean} true | false
    * @description Whether need tagsView

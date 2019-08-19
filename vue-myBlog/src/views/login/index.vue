@@ -206,11 +206,12 @@ export default {
           this.loading = true;
           this.$store
             .dispatch("user/login", this.loginForm)
-            .then(res => {
-              if (res.data.data.code == "000000") {
+            .then(data => {
+              console.log(data);
+              if (data.code == "000000") {
                 this.$message({
                   type: "success",
-                  message: res.data.data.message,
+                  message: data.message,
                   duration: 3000
                 });
                 this.$router.push({
@@ -220,7 +221,7 @@ export default {
               } else {
                 this.$message({
                   type: "error",
-                  message: res.data.data.message,
+                  message: data.message,
                   duration: 3000
                 });
                 this.loading = false;
