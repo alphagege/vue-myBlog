@@ -1,8 +1,11 @@
 import axios from "axios";
 import router from "@/router";
 import { Message } from "element-ui";
-
-axios.defaults.baseURL = "/mock";
+if (process.env.NODE_ENV === "development") {
+  axios.defaults.baseURL = "/mock";
+} else {
+  axios.defaults.baseURL = "https://www.easy-mock.com/mock";
+}
 
 axios.interceptors.request.use(
   config => {
