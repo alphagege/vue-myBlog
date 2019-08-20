@@ -14,17 +14,22 @@ const mutations = {
 
 const actions = {
   // user login
-  async login({ commit }, userInfo) {
+  login({ commit }, userInfo) {
     const { username, password } = userInfo;
-    let res = await api.login.createLogin({
-      data: {
-        username: username.trim(),
-        password: password
-      }
+    return new Promise((resolve, reject) => {
+      api.login
+        .createLogin({
+          data: {
+            username: username.trim(),
+            password: password
+          }
+        })
+        .then(res => {
+          commit(types.SET_TOKEN, res.data.data.token);
+          setToken(res.data.data.token);
+          resolve(res.data.data);
+        });
     });
-    commit(types.SET_TOKEN, res.data.data.token);
-    setToken(res.data.data.token);
-    return res;
   }
 
   // return new Promise((resolve, reject) => {
