@@ -9,6 +9,7 @@
     <div class="main-container">
       <div>
         <navbar />
+        <tags-view></tags-view>
         <app-main />
       </div>
     </div>
@@ -21,6 +22,7 @@ import ResizeMixin from "./mixin/ResizeHandler";
 console.log(ResizeMixin);
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
+import TagsView from "./components/TagsView";
 import AppMain from "./components/AppMain";
 export default {
   name: "Layout",
@@ -31,6 +33,7 @@ export default {
   components: {
     Sidebar,
     Navbar,
+    TagsView,
     AppMain
   },
   mixins: [ResizeMixin],
