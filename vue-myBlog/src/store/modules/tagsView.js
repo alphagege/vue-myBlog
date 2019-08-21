@@ -5,7 +5,10 @@ const state = {
 
 const mutations = {
   ADD_VISITED_VIEW: (state, view) => {
+    // 将当前跳转的路由对象传入，与states里面定义的访问的标签数组比较，如果path一致则不往下执行
     if (state.visitedViews.some(v => v.path === view.path)) return;
+    console.log(view);
+    // 添加一个title字段 值等于meta.title字段，如果没有就返回no-name，在追加进入访问后的tagsView数组
     state.visitedViews.push(
       Object.assign({}, view, {
         title: view.meta.title || "no-name"
@@ -20,7 +23,10 @@ const mutations = {
   },
 
   DEL_VISITED_VIEW: (state, view) => {
+    console.log(state.visitedViews.entries());
     for (const [i, v] of state.visitedViews.entries()) {
+      console.log(i); //0 1
+      console.log(v); // 分别打印出路有对象
       if (v.path === view.path) {
         state.visitedViews.splice(i, 1);
         break;
@@ -72,19 +78,22 @@ const mutations = {
 };
 
 const actions = {
+  // 这里的view代表路由对象
   addView({ dispatch }, view) {
     dispatch("addVisitedView", view);
     dispatch("addCachedView", view);
   },
   addVisitedView({ commit }, view) {
+    // 执行mutation方法里的ADD_VISITED_VIEW，将当前跳转的路有对象传入
     commit("ADD_VISITED_VIEW", view);
   },
   addCachedView({ commit }, view) {
     commit("ADD_CACHED_VIEW", view);
   },
-
+  // 删除tagsView
   delView({ dispatch, state }, view) {
     return new Promise(resolve => {
+      // 调用delVisitedView方法，传入当前路有对象
       dispatch("delVisitedView", view);
       dispatch("delCachedView", view);
       resolve({
@@ -95,6 +104,7 @@ const actions = {
   },
   delVisitedView({ commit, state }, view) {
     return new Promise(resolve => {
+      // 调用mutation里面的 DEL_VISITED_VIEW方法，传入view对象
       commit("DEL_VISITED_VIEW", view);
       resolve([...state.visitedViews]);
     });

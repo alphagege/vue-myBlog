@@ -47,7 +47,7 @@ export default {
       return {
         hideSidebar: !this.sidebar.opened, // 隐藏侧边栏所用的样式
         openSidebar: this.sidebar.opened, // 打开侧边栏所用的样式
-        // withoutAnimation: this.sidebar.withoutAnimation, // 暂时不知
+        withoutAnimation: this.sidebar.withoutAnimation, // 暂时不知
         mobile: this.device === "mobile" // 设备分辨率标识
       };
     }
@@ -57,7 +57,7 @@ export default {
 
   methods: {
     handleClickOutside() {
-      this.$store.dispatch("app/closeSidebar");
+      this.$store.dispatch("app/closeSidebar", { withoutAnimation: false });
     }
   }
 };

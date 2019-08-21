@@ -6,16 +6,19 @@
       :is-active="sidebar.opened"
       @toggleClick="toggleSideBar"
     />
+    <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 import Hamburger from "@/components/Hamburger";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export default {
   components: {
-    Hamburger
+    Hamburger,
+    Breadcrumb
   },
   computed: {
     ...mapGetters(["sidebar"])

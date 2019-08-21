@@ -19,7 +19,7 @@ Vue.use(Router);
     title: 'title'               面包屑和菜单显示的文字 (recommend set)
     icon: 'svg-name'            菜单显示的图图标
     noCache: true                if set true, the page will no be cached(default is false) 不被缓存
-    affix: true                  if set true, the tag will affix in the tags-view
+    affix: true                  if set true, the tag will affix in the tags-view 配置为true，则tagsview的span标签固定到组建中并且没有删除功能的icon 右键菜单也没有删除自身功能
     breadcrumb: false            if set false, the item will hidden in breadcrumb(default is true)
     activeMenu: '/example/list'  if set path, the sidebar will highlight the path you set
   }
@@ -33,13 +33,13 @@ const constantRoutes = [
   {
     path: "/",
     component: Layout,
-    redirect: "/dashboard",
+    redirect: "/login",
     children: [
       {
         path: "dashboard",
         component: () => import("@/views/dashboard/index"),
         name: "Dashboard",
-        meta: { title: "Dashboard", icon: "dashboard" }
+        meta: { title: "Dashboard", icon: "dashboard", affix: true }
       }
     ]
   },
@@ -51,7 +51,7 @@ const constantRoutes = [
         path: "index",
         component: () => import("@/views/documentation/index"),
         name: "Documentation",
-        meta: { title: "Documentation", icon: "documentation" }
+        meta: { title: "Documentation", icon: "documentation", affix: false }
       }
     ]
   }
