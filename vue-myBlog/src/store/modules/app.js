@@ -41,7 +41,7 @@ const actions = {
   toggleDevice({ commit }, device) {
     commit(types.TOGGLE_DEVICE, device);
   },
-  closeSidebar({ commit }) {
+  closeSideBar({ commit }) {
     commit(types.CLOSE_SIDEBAR);
   }
 };
