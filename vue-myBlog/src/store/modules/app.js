@@ -9,7 +9,8 @@ const state = {
       : true,
     withoutAnimation: false
   },
-  device: "desktop" // 标识当前设备
+  device: "desktop", // 标识当前设备
+  echartsTheme: "roma"
 };
 
 const mutations = {
@@ -25,12 +26,15 @@ const mutations = {
     }
   },
   [types.CLOSE_SIDEBAR](state, withoutAnimation) {
-    state.sidebar.opened = false; // 取反
     Cookies.set("sidebarStatus", 0);
+    state.sidebar.opened = false; // 取反
     state.sidebar.withoutAnimation = withoutAnimation;
   },
   [types.TOGGLE_DEVICE](state, device) {
     state.device = device;
+  },
+  [types.CHANGE_ECHARTSTHEME](state, theme) {
+    state.echartsTheme = theme;
   }
 };
 
@@ -41,8 +45,8 @@ const actions = {
   toggleDevice({ commit }, device) {
     commit(types.TOGGLE_DEVICE, device);
   },
-  closeSideBar({ commit }) {
-    commit(types.CLOSE_SIDEBAR);
+  closeSideBar({ commit }, { withoutAnimation }) {
+    commit(types.CLOSE_SIDEBAR, withoutAnimation);
   }
 };
 
