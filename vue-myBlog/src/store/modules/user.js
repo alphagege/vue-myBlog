@@ -28,7 +28,9 @@ const actions = {
           commit(types.SET_TOKEN, res.data.data.token);
           setToken(res.data.data.token);
           resolve(res.data.data);
-        });
+        }).catch(error=>{
+          reject(error)
+        })
     });
   }
 

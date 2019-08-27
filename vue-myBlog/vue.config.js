@@ -56,7 +56,17 @@ module.exports = {
     proxy: {
       "^/mock": {
         target: "https://www.easy-mock.com/",
-        changeOrigin: true
+        changeOrigin: true,
+        pathRewrite: {
+          "^/mock": "/mock"
+        }
+      },
+      "^/users": {
+        target: "https://api.github.com/",
+        changeOrigin: true,
+        pathRewrite: {
+          "^/users": "/users"
+        }
       }
     }
   },

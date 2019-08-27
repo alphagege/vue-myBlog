@@ -47,6 +47,9 @@ const actions = {
   },
   closeSideBar({ commit }, { withoutAnimation }) {
     commit(types.CLOSE_SIDEBAR, withoutAnimation);
+  },
+  changeEchartsTheme({ commit }, theme) {
+    commit(types.CHANGE_ECHARTSTHEME, theme);
   }
 };
 

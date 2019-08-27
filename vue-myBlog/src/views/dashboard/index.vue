@@ -2,6 +2,14 @@
   <div class="dashboard">
     <div class="dashboard-container">
       <el-row :gutter="16">
+        <mallki text="点击切换主题：" />
+        <el-radio-group v-model="echartsTheme">
+          <el-radio label="roma">roma</el-radio>
+          <el-radio label="macarons">macarons</el-radio>
+          <el-radio label="shine">shine</el-radio>
+        </el-radio-group>
+      </el-row>
+      <el-row :gutter="16">
         <el-col :xs="24" :sm="24" :lg="8">
           <div class="chart-warpper">
             <el-card class="box-card">
@@ -65,6 +73,7 @@ import MoveEarth from "@/components/Charts/MoveEarth";
 import LineChart from "@/components/Charts/LineChart";
 import PieChart from "@/components/Charts/PieChart";
 import GaugeChart from "@/components/Charts/GaugeChart";
+import Mallki from "@/components/TextHoverEffect/Mallki";
 export default {
   data() {
     return {};
@@ -75,10 +84,20 @@ export default {
     MoveEarth,
     LineChart,
     PieChart,
-    GaugeChart
+    GaugeChart,
+    Mallki
   },
 
-  computed: {},
+  computed: {
+    echartsTheme: {
+      get() {
+        return this.$store.getters.echartsTheme;
+      },
+      set(val) {
+        this.$store.dispatch("app/changeEchartsTheme", val);
+      }
+    }
+  },
 
   mounted() {},
 
@@ -90,10 +109,10 @@ export default {
   background: #f0f2f5;
   padding: 32px;
   .dashboard-container {
-    .chart-warpper {
+    .el-row {
       background: #fff;
       padding: 16px;
-      margin-bottom: 32px;
+      margin-bottom: 16px;
     }
     .chart-type-head {
       font-size: 20px;

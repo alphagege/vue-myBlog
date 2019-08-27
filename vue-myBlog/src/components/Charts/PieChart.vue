@@ -5,7 +5,11 @@
 <script>
 import echarts from "echarts";
 import resize from "./mixins/resize";
+import "echarts/theme/macarons.js";
+import "echarts/theme/roma.js";
+import "echarts/theme/shine.js";
 
+import { mapGetters } from "vuex";
 export default {
   mixins: [resize],
   props: {
@@ -49,7 +53,10 @@ export default {
   },
   methods: {
     initChart() {
-      this.chart = echarts.init(document.getElementById(this.id));
+      this.chart = echarts.init(
+        document.getElementById(this.id),
+        this.echartsTheme
+      );
       var data = [];
 
       for (var i = 0; i <= 100; i++) {
@@ -154,6 +161,16 @@ export default {
           }
         ]
       });
+    }
+  },
+  computed: {
+    ...mapGetters(["echartsTheme"])
+  },
+  watch: {
+    echartsTheme(val) {
+      this.chart.dispose();
+      this.chart = null;
+      this.initChart();
     }
   }
 };

@@ -44,14 +44,14 @@ const constantRoutes = [
     ]
   },
   {
-    path: "/documentation",
+    path: "/github",
     component: Layout,
     children: [
       {
         path: "index",
-        component: () => import("@/views/documentation/index"),
-        name: "Documentation",
-        meta: { title: "Documentation", icon: "documentation", affix: false }
+        component: () => import("@/views/github/index"),
+        name: "github",
+        meta: { title: "Github", icon: "github", affix: false }
       }
     ]
   }

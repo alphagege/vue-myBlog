@@ -5,6 +5,11 @@
 <script>
 import echarts from "echarts";
 import resize from "./mixins/resize";
+import "echarts/theme/macarons.js";
+import "echarts/theme/roma.js";
+import "echarts/theme/shine.js";
+
+import { mapGetters } from "vuex";
 
 export default {
   mixins: [resize],
@@ -32,7 +37,8 @@ export default {
   },
   data() {
     return {
-      chart: null
+      chart: null,
+      timer: null
     };
   },
   mounted() {
@@ -41,6 +47,7 @@ export default {
     });
   },
   beforeDestroy() {
+    clearInterval(this.timer);
     if (!this.chart) {
       return;
     }
@@ -49,7 +56,10 @@ export default {
   },
   methods: {
     initChart() {
-      this.chart = echarts.init(document.getElementById(this.id));
+      this.chart = echarts.init(
+        document.getElementById(this.id),
+        this.echartsTheme
+      );
       var option = {
         tooltip: {
           formatter: "{a} <br/>{b} : {c}%"
@@ -70,10 +80,23 @@ export default {
         ]
       };
       this.chart.setOption(option);
-      setInterval(() => {
+      this.timer = setInterval(() => {
         option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
         this.chart.setOption(option, true);
       }, 2000);
+    }
+  },
+  computed: {
+    ...mapGetters(["echartsTheme"])
+  },
+  watch: {
+    echartsTheme(val) {
+      // 先清除一次定时器，否则会叠加
+      clearInterval(this.timer);
+      // 此处必须加，否则切换主题无效
+      this.chart.dispose();
+      this.chart = null;
+      this.initChart();
     }
   }
 };

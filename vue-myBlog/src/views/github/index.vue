@@ -1,10 +1,11 @@
 <template>
   <div>
-    documentation
+      github
   </div>
 </template>
 
 <script>
+import api from '@/api';
 export default {
   data() {
     return {};
@@ -13,7 +14,10 @@ export default {
   components: {},
 
   computed: {},
-
+  async created(){
+    let {data} = await api.github.getGithubInfo()
+    console.log(data)
+  },
   mounted() {},
 
   methods: {}

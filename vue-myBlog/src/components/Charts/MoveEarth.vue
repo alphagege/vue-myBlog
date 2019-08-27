@@ -6,7 +6,6 @@
 import echarts from "echarts";
 import "echarts-gl";
 import resize from "./mixins/resize";
-
 export default {
   mixins: [resize],
   props: {
@@ -51,7 +50,6 @@ export default {
   methods: {
     initChart() {
       this.chart = echarts.init(document.getElementById(this.id));
-
       this.chart.setOption({
         backgroundColor: "#fff",
         globe: {
@@ -89,6 +87,13 @@ export default {
         },
         series: []
       });
+    }
+  },
+  watch: {
+    echartsTheme(val) {
+      this.chart.dispose();
+      this.chart = null;
+      this.initChart();
     }
   }
 };

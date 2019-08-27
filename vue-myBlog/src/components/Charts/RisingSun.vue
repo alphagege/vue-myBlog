@@ -106,6 +106,13 @@ export default {
         }
       });
     }
+  },
+  watch: {
+    echartsTheme(val) {
+      this.chart.dispose();
+      this.chart = null;
+      this.initChart();
+    }
   }
 };
 </script>
