@@ -18,7 +18,7 @@ import "./icons";
 
 import store from "./store/index.js";
 console.log(store);
-
+import "./directive/errorImg.js";
 new Vue({
   router,
   store,

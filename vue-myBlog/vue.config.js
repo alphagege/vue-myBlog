@@ -65,7 +65,7 @@ module.exports = {
         target: "https://api.github.com/",
         changeOrigin: true,
         pathRewrite: {
-          "^/users": "/users"
+          "^/users": "/"
         }
       }
     }
