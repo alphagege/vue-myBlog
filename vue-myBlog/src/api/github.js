@@ -10,7 +10,8 @@ const github = [
   },
   {
     name: "getReposRootInfo",
-    url: `/users/repos/{user}/{respName}/contents`
+    url: `/users/repos/{user}/{respName}/contents/{path}`
+    // https://api.github.com/repos/solomonxie/gists/contents/目录名
   }
 ];
 export default github;

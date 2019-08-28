@@ -2,12 +2,11 @@
   <div id="fileList">
     <ul>
       <el-table
+        @row-click="getGithubSublist"
+        v-loading="loading"
         height="500"
         center
         ref="gitHubListTable"
-        element-loading-text="拼命加载中"
-        element-loading-spinner="el-icon-loading"
-        element-loading-background="rgba(0, 0, 0, 0.8)"
         :data="rootDir"
         size="mini"
         highlight-current-row
@@ -15,7 +14,7 @@
       >
         <el-table-column property="name" label="文件名">
           <template slot-scope="scope">
-            <svg-icon :icon-class="rootDir.type === 'dir' ? 'dir' : 'file'" />
+            <svg-icon :icon-class="scope.row.type === 'dir' ? 'dir' : 'file'" />
             {{ scope.row.name }}
           </template>
         </el-table-column>
@@ -31,42 +30,55 @@
 </template>
 
 <script>
+import api from "@/api";
 export default {
+  props: {
+    user: {
+      type: String,
+      required: true
+    },
+    respName: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
-      rootDir: [
-        {
-          name: "itemsome",
-          path: "itemsome",
-          sha: "1c77879972b99c72bb093b1b1473245fad156ff0",
-          size: 0,
-          url:
-            "https://api.github.com/repos/LiQinFei/baiyaoshi/contents/itemsome?ref=master",
-          html_url:
-            "https://github.com/LiQinFei/baiyaoshi/tree/master/itemsome",
-          git_url:
-            "https://api.github.com/repos/LiQinFei/baiyaoshi/git/trees/1c77879972b99c72bb093b1b1473245fad156ff0",
-          download_url: null,
-          type: "dir",
-          _links: {
-            self:
-              "https://api.github.com/repos/LiQinFei/baiyaoshi/contents/itemsome?ref=master",
-            git:
-              "https://api.github.com/repos/LiQinFei/baiyaoshi/git/trees/1c77879972b99c72bb093b1b1473245fad156ff0",
-            html: "https://github.com/LiQinFei/baiyaoshi/tree/master/itemsome"
-          }
-        }
-      ]
+      rootDir: [],
+      loading: false,
+      path: ""
     };
   },
 
   components: {},
 
   computed: {},
-
+  created() {
+    this.getGithubList();
+  },
   mounted() {},
 
-  methods: {}
+  methods: {
+    async getGithubList(type) {
+      this.loading = true;
+      let { data } = await api.github.getReposRootInfo({
+        pathParams: {
+          user: this.user,
+          respName: this.respName,
+          path: this.path
+        }
+      });
+      if (data instanceof Array) {
+        this.rootDir = data;
+      } else {
+        window.open(data.download_url);
+      }
+      this.loading = false;
+    },
+    getGithubSublist(row, event, column) {
+      (this.path = row.path), this.getGithubList("file");
+    }
+  }
 };
 </script>
 <style scoped></style>

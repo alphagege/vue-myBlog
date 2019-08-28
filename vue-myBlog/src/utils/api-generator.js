@@ -38,11 +38,11 @@ let prepareAjaxMethod = api => (options = {}) => {
   let pathParams = getPathParams(api.url);
   let newUrl = pathParams.reduce((url, pathParam) => {
     let paramVal = options.pathParams[pathParam];
-    if (paramVal) {
-      return url.replace(`{${pathParam}}`, paramVal);
-    } else {
-      throw new Error(`${url} has invalid path params.`);
-    }
+    // if (paramVal) {
+    return url.replace(`{${pathParam}}`, paramVal); // 适配github的api将这里的异常抛出注释掉
+    // } else {
+    // throw new Error(`${url} has invalid path params.`);
+    // }
   }, api.url);
 
   if (!_.isEmpty(options.queryParams)) {

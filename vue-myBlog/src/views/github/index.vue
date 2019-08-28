@@ -45,7 +45,12 @@
     </el-row>
 
     <el-dialog :visible.sync="dialogVisible" width="80%" center>
-      <fileList></fileList>
+      <file-list
+        v-if="dialogVisible"
+        :user="author"
+        :resp-name="respName"
+        ref="fileLists"
+      ></file-list>
     </el-dialog>
   </div>
 </template>
@@ -54,6 +59,7 @@
 import api from "@/api";
 import FileList from "./components/FileList";
 export default {
+  name: "Github",
   data() {
     return {
       author: "LiQinFei",
@@ -90,6 +96,7 @@ export default {
         created_at: "",
         updated_at: ""
       },
+      respName: "",
       tableData: [],
       loading: false,
       dialogVisible: false
@@ -135,7 +142,8 @@ export default {
       a.click();
     },
     checkResp(index, row) {
-      this.dialogVisible = true;
+      this.respName = row.name;
+      this.dialogVisible = true; // 这里先让弹出展开才能获取到子组件的实例对象
     }
   }
 };
