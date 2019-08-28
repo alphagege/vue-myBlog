@@ -58,14 +58,14 @@ module.exports = {
         target: "https://www.easy-mock.com/",
         changeOrigin: true,
         pathRewrite: {
-          "^/mock": "/mock"
+          "^/mock": "/"
         }
       },
-      "^/users": {
+      "^/api": {
         target: "https://api.github.com/",
         changeOrigin: true,
         pathRewrite: {
-          "^/users": "/"
+          "^/api": "/"
         }
       }
     }

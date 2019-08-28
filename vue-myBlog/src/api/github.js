@@ -2,15 +2,15 @@ const github = [
   //  旭日图api
   {
     name: "getGithubInfo",
-    url: `/users/users/{user}`
+    url: `/api/users/{user}`
   },
   {
     name: "getReposInfo",
-    url: `/users/users/{user}/repos`
+    url: `/api/users/{user}/repos`
   },
   {
     name: "getReposRootInfo",
-    url: `/users/repos/{user}/{respName}/contents/{path}`
+    url: `/api/repos/{user}/{respName}/contents/{path}`
     // https://api.github.com/repos/solomonxie/gists/contents/目录名
   }
 ];
