@@ -1,6 +1,6 @@
 "use strict";
 const path = require("path");
-
+const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 function resolve(dir) {
   return path.join(__dirname, dir);
 }
@@ -41,7 +41,11 @@ module.exports = {
     imagesRule.exclude.add(resolve("src/icons"));
     config.module.rule("images").test(/\.(png|jpe?g|gif|svg)(\?.*)?$/);
   },
-  configureWebpack: () => {},
+  configureWebpack: () => {
+    return {
+      plugins: [new MonacoWebpackPlugin()]
+    };
+  },
   // css相关配置
   css: {
     // css预设器配置项
@@ -67,11 +71,16 @@ module.exports = {
         pathRewrite: {
           "^/api": "/"
         }
+      },
+      "^/code": {
+        target: "https://raw.githubusercontent.com/",
+        changeOrigin: true,
+        pathRewrite: {
+          "^/code": "/"
+        }
       }
+
+      //https://raw.githubusercontent.com/LiQinFei/baiyaoshi/master/itemsome/.editorconfig
     }
-  },
-  // 第三方插件配置
-  pluginOptions: {
-    // ...
   }
 };

@@ -16,6 +16,10 @@ import "./permission";
 
 import "./icons";
 
+import animated from "animate.css"; // npm install animate.css --save安装，在引入
+
+Vue.use(animated);
+
 import store from "./store/index.js";
 console.log(store);
 import "./directive/errorImg.js";

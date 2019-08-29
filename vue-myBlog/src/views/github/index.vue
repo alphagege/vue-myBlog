@@ -12,6 +12,16 @@
           <span class="username">{{ userInfo.login }}</span>
         </div>
       </el-col>
+      <el-col :xs="24" :sm="24" :lg="8">
+        <transition
+          name="fade"
+          enter-active-class="animated bounceIn"
+          leave-active-class="animated bounceIn"
+          :duration="200"
+        >
+          <h3 v-if="welcomeWord">欢迎来到我的github仓库，my bro！</h3>
+        </transition>
+      </el-col>
     </el-row>
     <el-row :gutter="32">
       <el-table
@@ -44,7 +54,14 @@
       </el-table>
     </el-row>
 
-    <el-dialog :visible.sync="dialogVisible" width="80%" center>
+    <el-dialog
+      top="10vh"
+      :visible.sync="dialogVisible"
+      width="80%"
+      :modal="false"
+      :modal-append-to-body="false"
+      center
+    >
       <file-list
         v-if="dialogVisible"
         :user="author"
@@ -99,7 +116,8 @@ export default {
       respName: "",
       tableData: [],
       loading: false,
-      dialogVisible: false
+      dialogVisible: false,
+      welcomeWord: false
     };
   },
 
@@ -112,7 +130,9 @@ export default {
     this.getUserInfo();
     this.getRespoInfo();
   },
-  mounted() {},
+  mounted() {
+    this.welcomeWord = true;
+  },
 
   methods: {
     async getUserInfo() {

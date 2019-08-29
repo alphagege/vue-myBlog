@@ -9,6 +9,10 @@ const github = [
     url: `/api/users/{user}/repos`
   },
   {
+    name: "getReposRawData",
+    url: `/code/{user}/{respName}/master/{path}`
+  },
+  {
     name: "getReposRootInfo",
     url: `/api/repos/{user}/{respName}/contents/{path}`
     // https://api.github.com/repos/solomonxie/gists/contents/目录名
