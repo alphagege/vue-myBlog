@@ -12,6 +12,8 @@ module.exports = {
   outputDir: "dist",
   // eslint-loader 是否在保存的时候检查
   lintOnSave: true,
+  // 生产环境不生成sourcemap文件
+  productionSourceMap: false,
   // webpack配置
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
   chainWebpack: config => {
@@ -41,7 +43,10 @@ module.exports = {
     imagesRule.exclude.add(resolve("src/icons"));
     config.module.rule("images").test(/\.(png|jpe?g|gif|svg)(\?.*)?$/);
   },
-  configureWebpack: () => {
+  configureWebpack: config => {
+    if (process.env.NODE_ENV === "production") {
+      config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true;
+    }
     return {
       plugins: [new MonacoWebpackPlugin()]
     };

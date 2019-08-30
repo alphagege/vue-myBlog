@@ -25,6 +25,7 @@
     </el-row>
     <el-row :gutter="32">
       <el-table
+        :cell-style="cellStyle"
         ref="gitHubTable"
         v-loading="loading"
         element-loading-text="拼命加载中"
@@ -36,10 +37,12 @@
         style="width: 100%"
       >
         <el-table-column type="index" width="50"> </el-table-column>
-        <el-table-column property="name" label="仓库名"> </el-table-column>
-        <el-table-column property="clone_url" label="clone地址">
+        <el-table-column property="name" label="仓库名" width="200">
         </el-table-column>
-        <el-table-column property="description" label="描述"> </el-table-column>
+        <el-table-column property="clone_url" label="clone地址" width="300">
+        </el-table-column>
+        <el-table-column property="description" label="描述" width="300">
+        </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button
@@ -54,14 +57,7 @@
       </el-table>
     </el-row>
 
-    <el-dialog
-      top="10vh"
-      :visible.sync="dialogVisible"
-      width="80%"
-      :modal="false"
-      :modal-append-to-body="false"
-      center
-    >
+    <el-dialog top="10vh" :visible.sync="dialogVisible" width="80%" center>
       <file-list
         v-if="dialogVisible"
         :user="author"
@@ -79,7 +75,9 @@ export default {
   name: "Github",
   data() {
     return {
+      // github登录名
       author: "LiQinFei",
+      // github用户信息
       userInfo: {
         login: "",
         id: "",
@@ -113,10 +111,18 @@ export default {
         created_at: "",
         updated_at: ""
       },
+      // 仓库名
       respName: "",
+
+      // 列表数据
       tableData: [],
+
+      //表格加载loading
       loading: false,
+      // 弹窗标识
       dialogVisible: false,
+
+      // 欢迎语言显示状态
       welcomeWord: false
     };
   },
@@ -127,10 +133,12 @@ export default {
 
   computed: {},
   async created() {
+    // 页面刚加载时拉去用户接口和仓库接口
     this.getUserInfo();
     this.getRespoInfo();
   },
   mounted() {
+    // 页面刚加载时加载欢迎语，利用animate.css加载动效
     this.welcomeWord = true;
   },
 
@@ -164,6 +172,13 @@ export default {
     checkResp(index, row) {
       this.respName = row.name;
       this.dialogVisible = true; // 这里先让弹出展开才能获取到子组件的实例对象
+    },
+    cellStyle(row, column, rowIndex, columnIndex) {
+      if (row.column.property === "name") {
+        return "font-weight:bold";
+      } else {
+        return "";
+      }
     }
   }
 };

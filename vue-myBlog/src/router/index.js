@@ -54,6 +54,18 @@ const constantRoutes = [
         meta: { title: "Github", icon: "github", affix: false }
       }
     ]
+  },
+  {
+    path: "/guide",
+    component: Layout,
+    children: [
+      {
+        path: "index",
+        component: () => import("@/views/guide/index"),
+        name: "guide",
+        meta: { title: "Guide", icon: "guide", affix: false }
+      }
+    ]
   }
 ];
 

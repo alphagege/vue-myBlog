@@ -32,7 +32,7 @@
       center
       ><MyEditor
         v-if="editorVisible"
-        :language="'html'"
+        :language="language"
         :codes="codes"
         :is-full-screen="isFullScreen"
         @onMounted="javascriptOnMounted"
@@ -59,12 +59,16 @@ export default {
   },
   data() {
     return {
+      // 列表github信息
       rootDir: [],
+      // 动效加载
       loading: false,
       path: "",
       editorVisible: false,
       codes: "",
-      isFullScreen: false
+      isFullScreen: false,
+      language: "html",
+      breadcrumbData: []
     };
   },
 
@@ -79,7 +83,8 @@ export default {
   mounted() {},
 
   methods: {
-    async getGithubList(type) {
+    // 获取Github仓库根目录
+    async getGithubList() {
       this.loading = true;
       let { data } = await api.github.getReposRootInfo({
         pathParams: {
@@ -91,16 +96,41 @@ export default {
       if (data instanceof Array) {
         this.rootDir = data;
       } else {
-        this.codes = atob(data.content);
+        // 转换语言
+        this.language = this.changeMyEditotLanguage(data.name.split(".").pop());
+
+        // base64解码 解决中文乱码
+        this.codes = decodeURIComponent(escape(window.atob(data.content)));
+        console.log(data.name.split(".").pop());
         this.editorVisible = true;
       }
       this.loading = false;
     },
+
+    // 获取仓库子目录
     getGithubSublist(row, event, column) {
-      (this.path = row.path), this.getGithubList("file");
+      (this.path = row.path), this.getGithubList();
     },
     javascriptOnCodeChange(value, event) {},
-    javascriptOnMounted(edit) {}
+    javascriptOnMounted(edit) {},
+    changeMyEditotLanguage(label) {
+      if (label === "json") {
+        return "json";
+      }
+      if (label === "css") {
+        return "css";
+      }
+      if (label === "html") {
+        return "html";
+      }
+      if (label === "ts" || label === "js") {
+        return "javascript";
+      }
+      if (label === "sql") {
+        return "sql";
+      }
+      return "editor";
+    }
   }
 };
 </script>
