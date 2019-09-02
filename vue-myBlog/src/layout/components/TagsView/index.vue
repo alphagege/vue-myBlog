@@ -119,7 +119,6 @@ export default {
     },
     addTags() {
       const { name } = this.$route; // 当前点击的路由名称
-      console.log(this.$route);
       // 如果名称存在，执行vuex中的 addView方法，将当前路由对象穿进去
       if (name) {
         this.$store.dispatch("tagsView/addView", this.$route);
@@ -128,7 +127,6 @@ export default {
     },
     moveToCurrentTag() {
       const tags = this.$refs.tag;
-      console.log(tags);
       this.$nextTick(() => {
         for (const tag of tags) {
           if (tag.to.path === this.$route.path) {

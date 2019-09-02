@@ -66,6 +66,18 @@ const constantRoutes = [
         meta: { title: "Guide", icon: "guide", affix: false }
       }
     ]
+  },
+  {
+    path: "/vue",
+    component: Layout,
+    children: [
+      {
+        path: "index",
+        component: () => import("@/views/vue/index"),
+        name: "vue",
+        meta: { title: "Vue", icon: "vuejs", affix: false }
+      }
+    ]
   }
 ];
 
