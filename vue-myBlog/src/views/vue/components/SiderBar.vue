@@ -10,7 +10,7 @@
       <li
         v-for="(item, index) in list"
         :class="[current == index ? 'item-select' : 'item']"
-        @click="selectMenu(index, $event, item)"
+        @click="selectMenu(item, index)"
         :key="index"
       >
         <el-tooltip effect="dark" :content="item.name" placement="right">
@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import api from "@/api";
 export default {
   props: {
     sidebarStyle: {
@@ -35,45 +34,32 @@ export default {
           height: "100%"
         };
       }
+    },
+    list: {
+      type: Array,
+      default: function() {
+        return [];
+      }
     }
   },
   data() {
     return {
       current: 0, //当前点击主菜单的索引
-      pid: null,
-      list: []
+      currentItem: {}
     };
   },
 
   components: {},
 
   computed: {},
-  created() {
-    this.getVueLits();
-  },
+  created() {},
   mounted() {},
 
   methods: {
-    selectMenu(index, event, item) {
+    selectMenu(item, index) {
       this.current = index;
-      this.pid = item.pid;
-
-      this.$emit("change-title", item.name);
-      if (item.isLeaf) {
-        this.getVueSublists();
-      }
-    },
-    async getVueLits() {
-      let { data } = await api.vue.getVuelists();
-      this.list = data.data;
-    },
-    async getVueSublists() {
-      let { data } = await api.vue.getVueSublists({
-        queryParams: {
-          pid: this.pid
-        }
-      });
-      this.$emit("change-content", data.data.content);
+      this.currentItem = item;
+      this.$emit("listActive", this.currentItem);
     }
   }
 };

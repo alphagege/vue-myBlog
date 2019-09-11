@@ -78,6 +78,18 @@ const constantRoutes = [
         meta: { title: "Vue", icon: "vuejs", affix: false }
       }
     ]
+  },
+  {
+    path: "/vr",
+    component: Layout,
+    children: [
+      {
+        path: "index",
+        component: () => import("@/views/vr/index"),
+        name: "vr",
+        meta: { title: "VR", icon: "vr", affix: false }
+      }
+    ]
   }
 ];
 
