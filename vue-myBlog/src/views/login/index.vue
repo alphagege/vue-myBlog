@@ -63,7 +63,7 @@
         :loading="loading"
         type="primary"
         style="width:100%;margin-bottom:30px;"
-        @click.native.prevent="handleLogin"
+        @click.native.prevent="showSlide = true"
         >Login</el-button
       >
 
@@ -95,6 +95,20 @@
       <br />
       <social-sign />
     </el-dialog>
+    <div class="slideSty" v-show="showSlide">
+      <slide-verify
+        @success="onSuccess"
+        @fail="onFail"
+        :slider-text="text"
+        :w="350"
+        :h="175"
+        ref="slideDiv"
+      ></slide-verify>
+      <div class="iconBtn">
+        <i class="el-icon-circle-close" @click="showSlide = false"></i
+        ><i class="el-icon-refresh" @click="refresh"></i>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -102,10 +116,11 @@
 import { mapActions } from "vuex";
 import { validUsername } from "@/utils/validate";
 import SocialSign from "./components/SocialSignin";
+import SlideVerify from "@/components/SlideVerify";
 
 export default {
   name: "Login",
-  components: { SocialSign },
+  components: { SocialSign, SlideVerify },
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
@@ -139,7 +154,9 @@ export default {
       loading: false,
       showDialog: false,
       redirect: undefined,
-      otherQuery: {}
+      otherQuery: {},
+      showSlide: false,
+      text: "向右滑动"
     };
   },
   watch: {
@@ -246,6 +263,17 @@ export default {
         }
         return acc;
       }, {});
+    },
+    onSuccess() {
+      this.showSlide = false;
+      this.$message.success("验证成功");
+      this.handleLogin();
+    },
+    onFail() {
+      this.$message.error("验证失败");
+    },
+    refresh() {
+      this.$refs.slideDiv.reset();
     }
     // afterQRScan() {
     //   if (e.key === 'x-admin-oauth-code') {
@@ -389,5 +417,40 @@ $light_gray: #eee;
       display: none;
     }
   }
+}
+.slideSty {
+  position: absolute;
+  width: 380px;
+  height: 311px;
+  background: #e8e8e8;
+  border: 1px solid #dcdcdc;
+  left: 50%;
+  top: 200px;
+  margin-left: -188px;
+  z-index: 99;
+  border-radius: 5px;
+}
+.iconBtn {
+  padding: 9px 0 0 19px;
+  color: #5f5f5f;
+  border-top: 1px solid #d8d8d8;
+  margin-top: 17px;
+  i {
+    font-size: 22px;
+    cursor: pointer;
+  }
+  i:last-child {
+    margin-left: 7px;
+  }
+}
+.slideSty /deep/ .slide-verify {
+  margin: 13px auto 0 auto;
+  width: 350px;
+}
+.slideSty /deep/ .slide-verify-slider {
+  width: 100% !important;
+}
+.slideSty /deep/ .slide-verify-refresh-icon {
+  display: none;
 }
 </style>

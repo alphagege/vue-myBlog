@@ -90,6 +90,18 @@ const constantRoutes = [
         meta: { title: "VR", icon: "vr", affix: false }
       }
     ]
+  },
+  {
+    path: "/slideyz",
+    component: Layout,
+    children: [
+      {
+        path: "index",
+        component: () => import("@/views/slideyz/index"),
+        name: "slideyz",
+        meta: { title: "SlideYZ", icon: "vr", affix: false }
+      }
+    ]
   }
 ];
 

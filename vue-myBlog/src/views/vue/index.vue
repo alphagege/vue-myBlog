@@ -29,7 +29,6 @@
           <div v-show="!content">
             <model-obj
               :src="objFilePath"
-              :mtl="mtlFilePath"
               :rotation="rotation"
               :position="position"
               @on-click="mouseclick"
@@ -128,9 +127,6 @@ export default {
   computed: {
     objFilePath() {
       return `${this.publicPath}static/tree.obj`;
-    },
-    mtlFilePath() {
-      return `${this.publicPath}static/tree.mtl`;
     }
   }
 };
