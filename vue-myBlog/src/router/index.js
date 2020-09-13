@@ -24,93 +24,100 @@ Vue.use(Router);
     activeMenu: '/example/list'  if set path, the sidebar will highlight the path you set
   }
  */
-const constantRoutes = [
-  {
+const constantRoutes = [{
     name: "login",
     path: "/login",
-    component: () => import("@/views/login/index")
-  },
-  {
+    component: () =>
+        import("@/views/login/index")
+},
+{
     path: "/",
     component: Layout,
     redirect: "/login",
-    children: [
-      {
+    children: [{
         path: "dashboard",
-        component: () => import("@/views/dashboard/index"),
+        component: () =>
+            import("@/views/dashboard/index"),
         name: "Dashboard",
-        meta: { title: "Dashboard", icon: "dashboard", affix: true }
-      }
-    ]
-  },
-  {
-    path: "/github",
-    component: Layout,
-    children: [
-      {
-        path: "index",
-        component: () => import("@/views/github/index"),
-        name: "github",
-        meta: { title: "Github", icon: "github", affix: false }
-      }
-    ]
-  },
-  {
+        meta: {
+            title: "Dashboard",
+            icon: "dashboard",
+            affix: true
+        }
+    }]
+},
+
+{
     path: "/guide",
     component: Layout,
-    children: [
-      {
+    children: [{
         path: "index",
-        component: () => import("@/views/guide/index"),
+        component: () =>
+            import("@/views/guide/index"),
         name: "guide",
-        meta: { title: "Guide", icon: "guide", affix: false }
-      }
-    ]
-  },
-  {
+        meta: {
+            title: "Guide",
+            icon: "guide",
+            affix: false
+        }
+    }]
+},
+{
     path: "/vue",
     component: Layout,
-    children: [
-      {
+    children: [{
         path: "index",
-        component: () => import("@/views/vue/index"),
+        component: () =>
+            import("@/views/vue/index"),
         name: "vue",
-        meta: { title: "Vue", icon: "vuejs", affix: false }
-      }
-    ]
-  },
-  {
+        meta: {
+            title: "Vue",
+            icon: "vuejs",
+            affix: false
+        }
+    }]
+},
+{
     path: "/vr",
     component: Layout,
-    children: [
-      {
+    children: [{
         path: "index",
-        component: () => import("@/views/vr/index"),
+        component: () =>
+            import("@/views/vr/index"),
         name: "vr",
-        meta: { title: "VR", icon: "vr", affix: false }
-      }
-    ]
-  },
-  {
+        meta: {
+            title: "VR",
+            icon: "vr",
+            affix: false
+        }
+    }]
+},
+{
     path: "/slideyz",
     component: Layout,
-    children: [
-      {
+    children: [{
         path: "index",
-        component: () => import("@/views/slideyz/index"),
+        component: () =>
+            import("@/views/slideyz/index"),
         name: "slideyz",
-        meta: { title: "SlideYZ", icon: "vr", affix: false }
-      }
-    ]
-  }
+        meta: {
+            title: "SlideYZ",
+            icon: "vr",
+            affix: false
+        }
+    }]
+},
+
 ];
 
 const createRouter = () =>
-  new Router({
-    // mode: 'history', // require service support
-    scrollBehavior: () => ({ y: 0 }),
-    routes: constantRoutes
-  });
+    new Router({
+        // mode: 'history', // require service support
+        scrollBehavior: () => ({
+            y: 0
+        }),
+        routes: constantRoutes
+    });
 
 const router = createRouter();
 export default router;

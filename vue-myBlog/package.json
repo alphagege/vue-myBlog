@@ -1,85 +1,83 @@
 {
-  "name": "vue-myBlog",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
-  },
-  "dependencies": {
-    "animate.css": "^3.7.2",
-    "axios": "^0.19.0",
-    "core-js": "^2.6.5",
-    "driver.js": "^0.9.7",
-    "echarts": "^4.2.1",
-    "echarts-gl": "^1.1.1",
-    "element-ui": "^2.11.1",
-    "js-cookie": "^2.2.1",
-    "monaco-editor": "^0.17.1",
-    "normalize.css": "^8.0.1",
-    "nprogress": "^0.2.0",
-    "vue": "^2.6.10",
-    "vue-3d-model": "^1.1.1",
-    "vue-router": "^3.1.2",
-    "vuex": "^3.1.1",
-    "vuex-persistedstate": "^2.5.4"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.10.0",
-    "@vue/cli-plugin-eslint": "^3.10.0",
-    "@vue/cli-service": "^3.10.0",
-    "@vue/eslint-config-prettier": "^5.0.0",
-    "babel-eslint": "^10.0.1",
-    "compression-webpack-plugin": "^3.0.0",
-    "eslint": "^5.16.0",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "monaco-editor-webpack-plugin": "^1.7.0",
-    "node-sass": "^4.9.0",
-    "sass-loader": "^7.2.0",
-    "svg-sprite-loader": "^4.1.6",
-    "terser-webpack-plugin": "^1.4.1",
-    "vue-pano": "^1.4.1",
-    "vue-template-compiler": "^2.6.10"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
+    "name": "coframe",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint"
     },
-    "extends": [
-      "plugin:vue/strongly-recommended",
-      "@vue/prettier"
-    ],
-    "rules": {
-      "no-console": "off",
-      "no-unused-vars": [
-        "warn",
-        {
-          "vars": "local",
-          "args": "none",
-          "ignoreRestSiblings": false
-        }
-      ],
-      "vue/no-parsing-error": [
-        2,
-        {
-          "x-invalid-end-tag": false
-        }
-      ]
+    "dependencies": {
+        "animate.css": "^3.7.2",
+        "axios": "^0.19.0",
+        "core-js": "^2.6.5",
+        "driver.js": "^0.9.7",
+        "echarts": "^4.2.1",
+        "echarts-gl": "^1.1.1",
+        "element-ui": "^2.11.1",
+        "js-cookie": "^2.2.1",
+        "normalize.css": "^8.0.1",
+        "nprogress": "^0.2.0",
+        "vue": "^2.6.10",
+        "vue-3d-model": "^1.1.1",
+        "vue-router": "^3.1.2",
+        "vuex": "^3.1.1",
+        "vuex-persistedstate": "^2.5.4"
     },
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ]
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "^3.10.0",
+        "@vue/cli-plugin-eslint": "^3.10.0",
+        "@vue/cli-service": "^3.10.0",
+        "@vue/eslint-config-prettier": "^5.0.0",
+        "babel-eslint": "^10.0.1",
+        "compression-webpack-plugin": "^3.0.0",
+        "eslint": "^5.16.0",
+        "eslint-plugin-prettier": "^3.1.0",
+        "eslint-plugin-vue": "^5.0.0",
+        "node-sass": "^4.9.0",
+        "sass-loader": "^7.2.0",
+        "svg-sprite-loader": "^4.1.6",
+        "terser-webpack-plugin": "^1.4.1",
+        "vue-pano": "^1.4.1",
+        "vue-template-compiler": "^2.6.10"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "plugin:vue/strongly-recommended",
+            "@vue/prettier"
+        ],
+        "rules": {
+            "no-console": "off",
+            "no-unused-vars": [
+                "warn",
+                {
+                    "vars": "local",
+                    "args": "none",
+                    "ignoreRestSiblings": false
+                }
+            ],
+            "vue/no-parsing-error": [
+                2,
+                {
+                    "x-invalid-end-tag": false
+                }
+            ]
+        },
+        "parserOptions": {
+            "parser": "babel-eslint"
+        }
+    },
+    "postcss": {
+        "plugins": {
+            "autoprefixer": {}
+        }
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions"
+    ]
 }

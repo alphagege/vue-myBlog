@@ -1,6 +1,13 @@
+/*
+ * @Descriptions: 
+ * @Version: 
+ * @Author: 
+ * @Date: 2019-12-24 10:53:25
+ * @LastEditors: dongwenjie
+ * @LastEditTime: 2020-09-13 17:49:39
+ */
 "use strict";
 const path = require("path");
-const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 function resolve(dir) {
   return path.join(__dirname, dir);
 }
@@ -48,7 +55,6 @@ module.exports = {
       config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true;
     }
     return {
-      plugins: [new MonacoWebpackPlugin()]
     };
   },
   // css相关配置
@@ -58,6 +64,8 @@ module.exports = {
     // 启用 CSS modules for all css / pre-processor files.
     modules: false
   },
+
+  lintOnSave: false,
   // webpack-dev-server 相关配置
   devServer: {
     host: "localhost",

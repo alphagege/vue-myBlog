@@ -7,7 +7,7 @@ const mutations = {
   ADD_VISITED_VIEW: (state, view) => {
     // 将当前跳转的路由对象传入，与states里面定义的访问的标签数组比较，如果path一致则不往下执行
     if (state.visitedViews.some(v => v.path === view.path)) return;
-    console.log(view);
+    // console.log(view);
     // 添加一个title字段 值等于meta.title字段，如果没有就返回no-name，在追加进入访问后的tagsView数组
     state.visitedViews.push(
       Object.assign({}, view, {
