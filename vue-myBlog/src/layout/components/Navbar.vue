@@ -7,6 +7,7 @@
       @toggleClick="toggleSideBar"
     />
     <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
+    <theme-picker id="theme-picker"></theme-picker>
   </div>
 </template>
 
@@ -14,11 +15,13 @@
 import { mapGetters } from "vuex";
 import Hamburger from "@/components/Hamburger";
 import Breadcrumb from "@/components/Breadcrumb";
+import ThemePicker from "@/components/ThemePicker";
 
 export default {
   components: {
     Hamburger,
-    Breadcrumb
+    Breadcrumb,
+    ThemePicker
   },
   computed: {
     ...mapGetters(["sidebar"])

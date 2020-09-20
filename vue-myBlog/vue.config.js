@@ -4,7 +4,7 @@
  * @Author: 
  * @Date: 2019-12-24 10:53:25
  * @LastEditors: dongwenjie
- * @LastEditTime: 2020-09-13 17:49:39
+ * @LastEditTime: 2020-09-13 17:51:48
  */
 "use strict";
 const path = require("path");
@@ -69,7 +69,7 @@ module.exports = {
   // webpack-dev-server 相关配置
   devServer: {
     host: "localhost",
-    port: 8080,
+    port: 9527,
     proxy: {
       "^/mock": {
         target: "https://www.easy-mock.com/",

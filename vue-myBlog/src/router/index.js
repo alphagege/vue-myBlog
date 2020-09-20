@@ -108,6 +108,22 @@ const constantRoutes = [{
     }]
 },
 
+{
+    path: "/themeChange",
+    component: Layout,
+    children: [{
+        path: "index",
+        component: () =>
+            import("@/views/themeChange/index"),
+        name: "ThemeChange",
+        meta: {
+            title: "ThemeChange",
+            icon: "theme",
+            affix: false
+        }
+    }]
+},
+
 ];
 
 const createRouter = () =>
