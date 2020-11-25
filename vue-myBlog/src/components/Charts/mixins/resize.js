@@ -1,3 +1,11 @@
+/*
+ * @Descriptions: 
+ * @Version: 
+ * @Author: 
+ * @Date: 2019-12-24 10:53:25
+ * @LastEditors: dongwenjie
+ * @LastEditTime: 2020-11-25 10:50:10
+ */
 import { debounce } from "@/utils";
 
 export default {
@@ -31,8 +39,6 @@ export default {
       );
   },
   methods: {
-    // use $_ for mixins properties
-    // https://vuejs.org/v2/style-guide/index.html#Private-property-names-essential
     $_sidebarResizeHandler(e) {
       if (e.propertyName === "width") {
         this.__resizeHandler();

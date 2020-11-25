@@ -2,13 +2,7 @@
   <div class="slide-verify" id="slideVerify" onselectstart="return false;">
     <canvas :width="w" :height="h" ref="canvas"></canvas>
     <div @click="refresh" class="slide-verify-refresh-icon"></div>
-    <canvas
-      :width="w"
-      :height="h"
-      ref="block"
-      class="slide-verify-block"
-    ></canvas>
-    <!-- container -->
+    <canvas :width="w" :height="h" ref="block" class="slide-verify-block"></canvas>
     <div
       class="slide-verify-slider"
       :class="{
@@ -18,7 +12,6 @@
       }"
     >
       <div class="slide-verify-slider-mask" :style="{ width: sliderMaskWidth }">
-        <!-- slider -->
         <div
           @mousedown="sliderDown"
           @touchstart="touchStartEvent"
@@ -27,7 +20,6 @@
           class="slide-verify-slider-mask-item"
           :style="{ left: sliderLeft }"
         >
-          <!-- <div class="slide-verify-slider-mask-item-icon"></div> -->
           <i class="el-icon-arrow-right"></i>
         </div>
       </div>
@@ -48,49 +40,45 @@ function square(x) {
 export default {
   name: "SlideVerify",
   props: {
-    // block length
     l: {
       type: Number,
-      default: 42
+      default: 42,
     },
-    // block radius
     r: {
       type: Number,
-      default: 10
+      default: 10,
     },
-    // canvas width
     w: {
       type: Number,
-      default: 310
+      default: 310,
     },
-    // canvas height
     h: {
       type: Number,
-      default: 155
+      default: 155,
     },
     sliderText: {
       type: String,
-      default: "Slide filled right"
-    }
+      default: "Slide filled right",
+    },
   },
   data() {
     return {
-      containerActive: false, // container active class
-      containerSuccess: false, // container success class
-      containerFail: false, // container fail class
+      containerActive: false,
+      containerSuccess: false,
+      containerFail: false,
       canvasCtx: null,
       blockCtx: null,
       block: null,
-      block_x: undefined, // container random position
+      block_x: undefined,
       block_y: undefined,
-      L: this.l + this.r * 2 + 3, // block real lenght
+      L: this.l + this.r * 2 + 3,
       img: undefined,
       originX: undefined,
       originY: undefined,
       isMouseDown: false,
       trail: [],
-      sliderLeft: 0, // block right offset
-      sliderMaskWidth: 0 // mask width
+      sliderLeft: 0,
+      sliderMaskWidth: 0,
     };
   },
   mounted() {
@@ -160,9 +148,7 @@ export default {
       img.src = this.getRandomImg();
       return img;
     },
-    // 随机生成img src
     getRandomImg() {
-      // return 'https://picsum.photos/300/150/?image=' + this.getRandomNumberByRange(0, 1084);
       return require(`@/assets/slide_images/slide-${this.getRandomNumberByRange(
         0,
         4
@@ -186,7 +172,7 @@ export default {
       this.isMouseDown = true;
     },
     bindEvents() {
-      document.addEventListener("mousemove", e => {
+      document.addEventListener("mousemove", (e) => {
         if (!this.isMouseDown) return false;
         const moveX = e.clientX - this.originX;
         const moveY = e.clientY - this.originY;
@@ -195,15 +181,15 @@ export default {
         let blockLeft = ((this.w - 40 - 20) / (this.w - 40)) * moveX;
         this.block.style.left = blockLeft + "px";
 
-        this.containerActive = true; // add active
+        this.containerActive = true;
         this.sliderMaskWidth = moveX + "px";
         this.trail.push(moveY);
       });
-      document.addEventListener("mouseup", e => {
+      document.addEventListener("mouseup", (e) => {
         if (!this.isMouseDown) return false;
         this.isMouseDown = false;
         if (e.clientX === this.originX) return false;
-        this.containerActive = false; // remove active
+        this.containerActive = false;
 
         const { spliced, TuringTest } = this.verify();
         if (spliced) {
@@ -247,7 +233,6 @@ export default {
       const { spliced, TuringTest } = this.verify();
       if (spliced) {
         if (TuringTest) {
-          // succ
           this.containerSuccess = true;
           this.$emit("success");
         } else {
@@ -264,14 +249,14 @@ export default {
       }
     },
     verify() {
-      const arr = this.trail; // drag y move distance
-      const average = arr.reduce(sum) / arr.length; // average
-      const deviations = arr.map(x => x - average); // deviation array
-      const stddev = Math.sqrt(deviations.map(square).reduce(sum) / arr.length); // standard deviation
+      const arr = this.trail;
+      const average = arr.reduce(sum) / arr.length;
+      const deviations = arr.map((x) => x - average);
+      const stddev = Math.sqrt(deviations.map(square).reduce(sum) / arr.length);
       const left = parseInt(this.block.style.left);
       return {
         spliced: Math.abs(left - this.block_x) < 10,
-        TuringTest: average !== stddev // equal => not person operate
+        TuringTest: average !== stddev,
       };
     },
     reset() {
@@ -287,10 +272,9 @@ export default {
       this.blockCtx.clearRect(0, 0, w, h);
       this.block.width = w;
 
-      // generate img
       this.img.src = this.getRandomImg();
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

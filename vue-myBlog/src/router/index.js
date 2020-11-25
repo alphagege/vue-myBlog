@@ -40,7 +40,7 @@ const constantRoutes = [{
             import("@/views/dashboard/index"),
         name: "Dashboard",
         meta: {
-            title: "Dashboard",
+            title: "工作台",
             icon: "dashboard",
             affix: true
         }
@@ -56,7 +56,7 @@ const constantRoutes = [{
             import("@/views/guide/index"),
         name: "guide",
         meta: {
-            title: "Guide",
+            title: "引导组件",
             icon: "guide",
             affix: false
         }
@@ -71,7 +71,7 @@ const constantRoutes = [{
             import("@/views/vue/index"),
         name: "vue",
         meta: {
-            title: "Vue",
+            title: "面板组件",
             icon: "vuejs",
             affix: false
         }
@@ -86,7 +86,7 @@ const constantRoutes = [{
             import("@/views/vr/index"),
         name: "vr",
         meta: {
-            title: "VR",
+            title: "VR组件",
             icon: "vr",
             affix: false
         }
@@ -101,7 +101,7 @@ const constantRoutes = [{
             import("@/views/slideyz/index"),
         name: "slideyz",
         meta: {
-            title: "SlideYZ",
+            title: "滑块组件",
             icon: "vr",
             affix: false
         }
@@ -117,11 +117,31 @@ const constantRoutes = [{
             import("@/views/themeChange/index"),
         name: "ThemeChange",
         meta: {
-            title: "ThemeChange",
+            title: "主题切换效果",
             icon: "theme",
             affix: false
         }
     }]
+},
+
+{
+    path: '/pdf',
+    component: Layout,
+    children: [
+        {
+            path: 'index',
+            component: () =>
+                import("@/views/pdf/index"),
+            name: 'PDF下载展示',
+            meta: { title: 'PDF', icon: 'pdf' }
+        }
+    ]
+},
+{
+    path: '/pdf/download',
+    component: () =>
+        import("@/views/pdf/download"),
+    hidden: true
 },
 
 ];

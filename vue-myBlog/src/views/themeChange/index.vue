@@ -1,3 +1,11 @@
+<!--
+ * @Descriptions: 
+ * @Version: 
+ * @Author: 
+ * @Date: 2020-09-20 16:25:47
+ * @LastEditors: dongwenjie
+ * @LastEditTime: 2020-11-25 10:40:45
+-->
 <template>
   <div class="app-container">
     <el-form ref="form" :model="form" label-width="80px">
@@ -46,20 +54,6 @@
     </el-form>
 
     <el-pagination layout="prev, pager, next" :total="50"></el-pagination>
-
-    <el-dropdown>
-      <span class="el-dropdown-link">
-        下拉菜单
-        <i class="el-icon-arrow-down el-icon--right"></i>
-      </span>
-      <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item>黄金糕</el-dropdown-item>
-        <el-dropdown-item>狮子头</el-dropdown-item>
-        <el-dropdown-item>螺蛳粉</el-dropdown-item>
-        <el-dropdown-item disabled>双皮奶</el-dropdown-item>
-        <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
   </div>
 </template>
 
@@ -79,15 +73,15 @@ export default {
         delivery: false,
         type: [],
         resource: "",
-        desc: ""
-      }
+        desc: "",
+      },
     };
   },
   computed: {},
   watch: {},
   created() {},
   mounted() {},
-  methods: {}
+  methods: {},
 };
 </script>
 <style lang="scss" scoped>

@@ -13,7 +13,7 @@ export default {
   data() {
     return {
       chalk: "",
-      theme: ORIGINAL_THEME
+      theme: ORIGINAL_THEME,
     };
   },
   watch: {
@@ -21,18 +21,11 @@ export default {
       if (typeof val !== "string") return;
       const themeCluster = this.getThemeCluster(val.replace("#", ""));
       const originalCluster = this.getThemeCluster(oldVal.replace("#", ""));
-
-      // console.log(themeCluster); // ["0A4684", "10,70,132", "#235990", "#3b6b9d", "#547ea9", "#6c90b5", "#85a3c2", "#9db5ce", "#b6c8da", "#cedae6", "#e7edf3", "#93f77"]
-      // console.log(originalCluster); // ["0C2D4F", "12,45,79", "#244261", "#3d5772", "#556c84", "#6d8195", "#8696a7", "#9eabb9", "#b6c0ca", "#ced5dc", "#e7eaed", "#b2947"]
-      // console.log(themeCluster, originalCluster)
       const getHandler = (variable, id) => {
-        // console.log(variable); // chalk
-        // console.log(id); // chalk-style
         return () => {
           const originalCluster1 = this.getThemeCluster(
             ORIGINAL_THEME.replace("#", "")
           );
-          //console.log(originalCluster1); // ["409EFF", "64,158,255", "#53a8ff", "#66b1ff", "#79bbff", "#8cc5ff", "#a0cfff", "#b3d8ff", "#c6e2ff", "#d9ecff", "#ecf5ff", "#3a8ee6"]
           const newStyle = this.updateStyle(
             this[variable],
             originalCluster1,
@@ -63,13 +56,13 @@ export default {
 
       const styles = [].slice
         .call(document.querySelectorAll("style"))
-        .filter(style => {
+        .filter((style) => {
           const text = style.innerText;
           return (
             new RegExp(oldVal, "i").test(text) && !/Chalk Variables/.test(text)
           );
         });
-      styles.forEach(style => {
+      styles.forEach((style) => {
         const { innerText } = style;
         if (typeof innerText !== "string") return;
         style.innerText = this.updateStyle(
@@ -80,9 +73,9 @@ export default {
       });
       this.$message({
         message: "换肤成功",
-        type: "success"
+        type: "success",
       });
-    }
+    },
   },
 
   methods: {
@@ -149,8 +142,8 @@ export default {
       }
       clusters.push(shadeColor(theme, 0.1));
       return clusters;
-    }
-  }
+    },
+  },
 };
 </script>
 
