@@ -132,7 +132,7 @@ const constantRoutes = [{
             path: 'index',
             component: () =>
                 import("@/views/pdf/index"),
-            name: 'PDF下载展示',
+            name: 'pdf',
             meta: { title: 'PDF', icon: 'pdf' }
         }
     ]
@@ -142,6 +142,133 @@ const constantRoutes = [{
     component: () =>
         import("@/views/pdf/download"),
     hidden: true
+},
+
+{
+    path: '/countTo',
+    component: Layout,
+    children: [
+        {
+            path: 'index',
+            component: () =>
+                import("@/views/countTo/index"),
+            name: 'countTo',
+            meta: { title: '数字滚动组件', icon: 'star' }
+        }
+    ]
+},
+
+{
+    path: '/news',
+    component: Layout,
+    children: [
+        {
+            path: 'index',
+            component: () =>
+                import("@/views/news/index"),
+            name: 'news',
+            meta: { title: '新闻', icon: 'theme' }
+        }
+    ]
+},
+
+{
+    path: '/tinymce',
+    component: Layout,
+    children: [
+        {
+            path: 'index',
+            component: () =>
+                import("@/views/tinymce/index"),
+            name: 'news',
+            meta: { title: '富文本编辑器', icon: 'size' }
+        }
+    ]
+},
+
+{
+    path: '/picture-preview',
+    component: Layout,
+    children: [
+        {
+            path: 'index',
+            component: () =>
+                import("@/views/picturePreview/index"),
+            name: 'picture-preview',
+            meta: { title: '图片预览', icon: 'shopping' }
+        }
+    ]
+},
+
+{
+    path: '/video-player',
+    component: Layout,
+    children: [
+        {
+            path: 'index',
+            component: () =>
+                import("@/views/videoPlayer/index"),
+            name: 'video-player-demo',
+            meta: { title: '视频播放', icon: 'eye-open' }
+        }
+    ]
+},
+
+{
+    path: '/lodash',
+    component: Layout,
+    children: [
+        {
+            path: 'index',
+            component: () =>
+                import("@/views/lodash/index"),
+            name: 'lodash-demo',
+            meta: { title: 'lodash', icon: 'list' }
+        }
+    ]
+},
+
+{
+    path: '/drag-dialog',
+    component: Layout,
+    children: [
+        {
+            path: 'index',
+            component: () =>
+                import("@/views/dragDialog/index"),
+            name: 'drag-dialog-demo',
+            meta: { title: '可拖拽弹窗', icon: 'message' }
+        }
+    ]
+},
+
+
+{
+    path: '/small-component',
+    component: Layout,
+    children: [
+        {
+            path: 'index',
+            component: () =>
+                import("@/views/smallComponent/index"),
+            name: 'small-component-demo',
+            meta: { title: '小组件', icon: 'eye' }
+        }
+    ]
+},
+
+{
+    path: '/codeMirror',
+    component: Layout,
+    children: [
+        {
+            path: 'index',
+            component: () =>
+                import("@/views/codeMirror/index"),
+            name: 'coder-demo',
+            meta: { title: '代码编辑器', icon: 'link' }
+        }
+    ]
 },
 
 ];

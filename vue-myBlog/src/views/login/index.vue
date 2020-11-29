@@ -9,7 +9,7 @@
       label-position="left"
     >
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <h3 class="title">coframe</h3>
       </div>
 
       <el-form-item prop="username">
@@ -27,12 +27,7 @@
         />
       </el-form-item>
 
-      <el-tooltip
-        v-model="capsTooltip"
-        content="Caps lock is On"
-        placement="right"
-        manual
-      >
+      <el-tooltip v-model="capsTooltip" content="Caps lock is On" placement="right" manual>
         <el-form-item prop="password">
           <span class="svg-container">
             <svg-icon icon-class="password" />
@@ -52,9 +47,7 @@
             @keyup.enter.native="handleLogin"
           />
           <span class="show-pwd" @click="showPwd">
-            <svg-icon
-              :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"
-            />
+            <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
           </span>
         </el-form-item>
       </el-tooltip>
@@ -64,10 +57,9 @@
         type="primary"
         style="width:100%;margin-bottom:30px;"
         @click.native.prevent="showSlide = true"
-        >Login</el-button
-      >
+      >登录</el-button>
 
-      <div style="position:relative">
+      <!-- <div style="position:relative">
         <div class="tips">
           <span>Username : admin</span>
           <span>Password : any</span>
@@ -81,10 +73,8 @@
           class="thirdparty-button"
           type="primary"
           @click="showDialog = true"
-        >
-          Or connect with
-        </el-button>
-      </div>
+        >Or connect with</el-button>
+      </div>-->
     </el-form>
 
     <el-dialog title="Or connect with" :visible.sync="showDialog">
@@ -105,8 +95,8 @@
         ref="slideDiv"
       ></slide-verify>
       <div class="iconBtn">
-        <i class="el-icon-circle-close" @click="showSlide = false"></i
-        ><i class="el-icon-refresh" @click="refresh"></i>
+        <i class="el-icon-circle-close" @click="showSlide = false"></i>
+        <i class="el-icon-refresh" @click="refresh"></i>
       </div>
     </div>
   </div>
@@ -139,15 +129,15 @@ export default {
     return {
       loginForm: {
         username: "admin",
-        password: "111111"
+        password: "111111",
       },
       loginRules: {
         username: [
-          { required: true, trigger: "blur", validator: validateUsername }
+          { required: true, trigger: "blur", validator: validateUsername },
         ],
         password: [
-          { required: true, trigger: "blur", validator: validatePassword }
-        ]
+          { required: true, trigger: "blur", validator: validatePassword },
+        ],
       },
       passwordType: "password",
       capsTooltip: false,
@@ -156,12 +146,12 @@ export default {
       redirect: undefined,
       otherQuery: {},
       showSlide: false,
-      text: "向右滑动"
+      text: "向右滑动",
     };
   },
   watch: {
     $route: {
-      handler: function(route) {
+      handler: function (route) {
         console.log(route);
         const query = route.query;
         if (query) {
@@ -169,8 +159,8 @@ export default {
           this.otherQuery = this.getOtherQuery(query);
         }
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   created() {
     // window.addEventListener('storage', this.afterQRScan)
@@ -193,8 +183,8 @@ export default {
       if (key && key.length === 1) {
         // 这两种情况之下是开起来了大写锁定
         if (
-          (shiftKey && (key >= "a" && key <= "z")) ||
-          (!shiftKey && (key >= "A" && key <= "Z"))
+          (shiftKey && key >= "a" && key <= "z") ||
+          (!shiftKey && key >= "A" && key <= "Z")
         ) {
           this.capsTooltip = true;
         } else {
@@ -218,40 +208,40 @@ export default {
       });
     },
     handleLogin() {
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.loading = true;
           this.$store
             .dispatch("user/login", this.loginForm)
-            .then(data => {
+            .then((data) => {
               console.log(data);
               if (data.code == "000000") {
                 this.$message({
                   type: "success",
                   message: data.message,
-                  duration: 3000
+                  duration: 3000,
                 });
                 this.$router.push({
-                  name: "Dashboard"
+                  name: "Dashboard",
                 });
                 this.loading = false;
               } else {
                 this.$message({
                   type: "error",
                   message: data.message,
-                  duration: 3000
+                  duration: 3000,
                 });
                 this.loading = false;
               }
             })
-            .catch(err => {
+            .catch((err) => {
               this.loading = false;
             });
         } else {
           this.$message({
             type: "error",
             message: "表单验证失败",
-            duration: 3000
+            duration: 3000,
           });
         }
       });
@@ -274,7 +264,7 @@ export default {
     },
     refresh() {
       this.$refs.slideDiv.reset();
-    }
+    },
     // afterQRScan() {
     //   if (e.key === 'x-admin-oauth-code') {
     //     const code = getQueryObject(e.newValue)
@@ -293,7 +283,7 @@ export default {
     //     }
     //   }
     // }
-  }
+  },
 };
 </script>
 

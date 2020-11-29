@@ -4,7 +4,7 @@
  * @Author: 
  * @Date: 2019-12-24 10:53:25
  * @LastEditors: dongwenjie
- * @LastEditTime: 2020-09-13 17:51:48
+ * @LastEditTime: 2020-11-29 17:07:46
  */
 "use strict";
 const path = require("path");
@@ -90,6 +90,13 @@ module.exports = {
         changeOrigin: true,
         pathRewrite: {
           "^/code": "/"
+        }
+      },
+      "^/news": {
+        target: "http://jskou.com:3003/",
+        changeOrigin: true,
+        pathRewrite: {
+          "^/news": "/"
         }
       }
 
