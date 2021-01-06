@@ -85,7 +85,7 @@ export default {
     LineChart,
     PieChart,
     GaugeChart,
-    Mallki
+    Mallki,
   },
 
   computed: {
@@ -95,13 +95,15 @@ export default {
       },
       set(val) {
         this.$store.dispatch("app/changeEchartsTheme", val);
-      }
-    }
+      },
+    },
   },
 
-  mounted() {},
+  mounted() {
+    // alert(bbbb);
+  },
 
-  methods: {}
+  methods: {},
 };
 </script>
 <style scoped lang="scss">

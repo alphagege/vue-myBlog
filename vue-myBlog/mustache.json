@@ -1,0 +1,21 @@
+{
+  "name": "shenhao",
+  "age": "19",
+  "html": "<p>123</p>",
+  "isTrue": true,
+  "thisIsObject": {
+    "name": "shenhao",
+    "age": "19"
+  },
+  "isArray": [
+    {
+      "name": "shenhao"
+    },
+    {
+      "name": "shenhao"
+    },
+    {
+      "name": "shenhao"
+    }
+  ]
+}

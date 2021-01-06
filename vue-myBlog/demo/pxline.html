@@ -1,0 +1,39 @@
+<!--
+ * @Descriptions: 
+ * @Version: 
+ * @Author: 
+ * @Date: 2020-12-29 16:58:21
+ * @LastEditors: dongwenjie
+ * @LastEditTime: 2020-12-29 16:58:30
+-->
+<html>
+<div class="xix xixt">顶部细线</div>
+<div class="xix xixb">底部细线</div>
+</html>
+
+<style>
+  .xix:before {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    background-color: transparent;
+    height: 1px;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    transform: scaleY(.5);
+    transform-origin: 50% 0;
+    -webkit-transform: scaleY(.5);
+    -webkit-transform-origin: 50% 0;
+  }
+
+  .xixt:before {
+    background-color: #E5E5E5;
+    top: 0;
+  }
+
+  .xixb:before {
+    background-color: #E5E5E5;
+    bottom: 0;
+  }
+</style>

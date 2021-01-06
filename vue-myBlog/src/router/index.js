@@ -271,6 +271,34 @@ const constantRoutes = [{
     ]
 },
 
+{
+    path: '/htmltopdf',
+    component: Layout,
+    children: [
+        {
+            path: 'index',
+            component: () =>
+                import("@/views/htmltopdf/index"),
+            name: 'htmltopdf-demo',
+            meta: { title: 'html生成pdf', icon: 'link' }
+        }
+    ]
+},
+
+{
+    path: '/dialog',
+    component: Layout,
+    children: [
+        {
+            path: 'index',
+            component: () =>
+                import("@/views/dialog/index"),
+            name: 'dialog-demo',
+            meta: { title: '弹窗组件', icon: 'link' }
+        }
+    ]
+},
+
 ];
 
 const createRouter = () =>

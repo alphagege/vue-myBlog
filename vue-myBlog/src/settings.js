@@ -1,3 +1,11 @@
+/*
+ * @Descriptions: 
+ * @Version: 
+ * @Author: 
+ * @Date: 2019-12-24 10:53:25
+ * @LastEditors: dongwenjie
+ * @LastEditTime: 2020-12-28 10:27:26
+ */
 module.exports = {
   title: "coframe",
 
@@ -33,5 +41,5 @@ module.exports = {
    * The default is only used in the production env
    * If you want to also use it in dev, you can pass ['production', 'development']
    */
-  errorLog: "production"
+  // errorLog: "production"
 };

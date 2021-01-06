@@ -1,0 +1,39 @@
+<!--
+ * @Descriptions: 
+ * @Version: 
+ * @Author: 
+ * @Date: 2020-12-29 17:45:45
+ * @LastEditors: dongwenjie
+ * @LastEditTime: 2020-12-29 18:20:54
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+
+  var a = 5
+
+  function callback() {
+    var a = 1
+    console.log('-- callback this', this, this.a, '--')
+  }
+  function validate() {
+    var a = 2
+    console.log('-- validate this', this, this.a, '--')
+  }
+  function showPrompt(title, validate, callback) {
+    validate() // 打印 5
+    callback() // 打印 5
+  }
+  // showPrompt('1', validate, callback) // 5 5 
+  showPrompt('1', validate.bind(validate), callback.bind(callback)) // 2 1
+</script>
+
+</html>

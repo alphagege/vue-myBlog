@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  {{name}} 有一个 {{&html}}  
+<br>
+<hr>
+  {{thisIsObject.name}} {{thisIsObject.age}}
+ <br>
+<hr>
+  -webkit- {{#isTrue}} 如果是真就显示了 {{/isTrue}}
+ <br>
+<hr>
+  循环一下下面的内容, 如果是数组，可以用.来表示循环的每一个元素
+  {{#isArray}} {{name}} {{/isArray}}
+<br>
+<hr>
+  {{!^}}与{{!#}}相反，如果变量是null、undefined、 false、和空数组讲输出结果
+</body>
+</html>

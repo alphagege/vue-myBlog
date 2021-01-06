@@ -4,7 +4,7 @@
  * @Author: 
  * @Date: 2019-12-24 10:53:25
  * @LastEditors: dongwenjie
- * @LastEditTime: 2020-11-29 17:07:46
+ * @LastEditTime: 2021-01-05 14:57:47
  */
 "use strict";
 const path = require("path");
@@ -20,10 +20,12 @@ module.exports = {
   // eslint-loader 是否在保存的时候检查
   lintOnSave: true,
   // 生产环境不生成sourcemap文件
-  productionSourceMap: false,
+  productionSourceMap: true,
+  runtimeCompiler: true,
   // webpack配置
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
   chainWebpack: config => {
+    config.plugins.delete('prefetch').delete('preload')
     config.resolve.alias.set("@", resolve("src"));
     config.resolve.extensions
       .add(".vue")
@@ -68,6 +70,10 @@ module.exports = {
   lintOnSave: false,
   // webpack-dev-server 相关配置
   devServer: {
+    overlay: {
+      warnings: false,
+      errors: true
+    },
     host: "localhost",
     port: 9527,
     proxy: {

@@ -4,12 +4,29 @@
  * @Author: 
  * @Date: 2019-12-24 10:53:25
  * @LastEditors: dongwenjie
- * @LastEditTime: 2020-11-29 17:51:38
+ * @LastEditTime: 2020-12-28 10:57:17
  */
-import Vue from "vue";
+import Vue from "vue/dist/vue.esm";
 import App from "./App.vue";
 import router from "./router";
-Vue.config.productionTip = false;
+// Vue.config.errorHandler = function (err) {
+//   console.error('Vue.error', err.stack)
+//   // 逻辑处理
+// };
+// Vue.config.warnHandler = function (msg, vm, trace) {
+//   // `trace` 是组件的继承关系追踪
+//   console.warn('warn', msg, vm, trace)
+//   // 逻辑处理
+// }
+
+// Vue.config.errorHandler = function (err, vm, info, a) {
+//   // Don't ask me why I use Vue.nextTick, it just a hack.
+//   // detail see https://forum.vuejs.org/t/dispatch-in-vue-config-errorhandler-has-some-problem/23500
+//   Vue.nextTick(() => {
+
+//     console.error(err, info)
+//   })
+// }
 
 import "normalize.css/normalize.css"; // a modern alternative to CSS resets
 
@@ -40,6 +57,10 @@ import VueVideoPlayer from 'vue-video-player'
 import 'video.js/dist/video-js.css'
 
 Vue.use(VueVideoPlayer)
+
+
+import htmlToPdf from "../src/utils/htmlToPdf"
+Vue.use(htmlToPdf)
 
 import store from "./store/index.js";
 import "./directive/errorImg.js";
