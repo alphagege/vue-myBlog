@@ -299,6 +299,21 @@ const constantRoutes = [{
     ]
 },
 
+
+{
+    path: '/vuedraggable',
+    component: Layout,
+    children: [
+        {
+            path: 'index',
+            component: () =>
+                import("@/views/vuedraggable/index"),
+            name: 'vuedraggable-demo',
+            meta: { title: '拖拽组件', icon: 'link' }
+        }
+    ]
+},
+
 ];
 
 const createRouter = () =>

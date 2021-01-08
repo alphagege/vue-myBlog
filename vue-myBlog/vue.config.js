@@ -4,7 +4,7 @@
  * @Author: 
  * @Date: 2019-12-24 10:53:25
  * @LastEditors: dongwenjie
- * @LastEditTime: 2021-01-05 14:57:47
+ * @LastEditTime: 2021-01-07 18:05:49
  */
 "use strict";
 const path = require("path");
@@ -108,5 +108,20 @@ module.exports = {
 
       //https://raw.githubusercontent.com/LiQinFei/baiyaoshi/master/itemsome/.editorconfig
     }
+  },
+
+  pages: {
+    views: {
+      entry: './src/main.js',
+      template: 'public/index.html',
+      filename: "index.html",
+      title: 'views',
+    },
+    subviews: {
+      entry: "./src/subMain.js",
+      template: "public/output.html",
+      filename: "output.html",
+      title: 'subviews',
+    },
   }
 };

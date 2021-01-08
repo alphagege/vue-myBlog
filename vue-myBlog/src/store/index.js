@@ -1,3 +1,11 @@
+/*
+ * @Descriptions: 
+ * @Version: 
+ * @Author: 
+ * @Date: 2019-12-24 10:53:25
+ * @LastEditors: dongwenjie
+ * @LastEditTime: 2021-01-08 14:46:26
+ */
 import Vue from "vue";
 import Vuex from "vuex";
 Vue.use(Vuex);
@@ -10,15 +18,20 @@ import createPersistedState from "vuex-persistedstate"; // 解决vuex刷新数�
 
 export default new Vuex.Store({
   plugins: [
-    createPersistedState({
-      storage: window.sessionStorage,
-      reducer(val) {
-        return {
-          // 只储存state中的assessmentData
-          app: val.app
-        };
-      }
-    })
+    // createPersistedState(
+    // {
+    // storage: window.sessionStorage,
+    // reducer(val) {
+    //   return {
+    //     // 只储存state中的assessmentData
+    //     app: val.app,
+    //     user: val.user,
+    //     settings: val.settings,
+    //     tagsView: val.tagsView
+    //   };
+    // }
+    // }
+    // )
   ],
   getters,
   modules: {
